@@ -29,6 +29,11 @@ h1 {
   width: 570px;
 }
 
+h2 {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1.1em;
+}
+
 /* FOOTER HEADINGS */
 h5 {
     font-family: 'Ubuntu', sans-serif;
