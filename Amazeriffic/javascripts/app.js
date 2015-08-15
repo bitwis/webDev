@@ -92,21 +92,33 @@ var main = function () {
                 });
 
             } else if ($element.parent().is(":nth-child(4)")) {
-                // input a new to-do
-                $input = $("<input>"),
-                $button = $("<button>").text("+");
+               var $input = $("<input>").addClass("description"),
+                    $inputLabel = $("<p>").text("Description: "),
+                    $tagInput = $("<input>").addClass("tags"),
+                    $tagLabel = $("<p>").text("Tags: "),
+                    $button = $("<button>").text("+");
 
                 $button.on("click", function () {
-                    if ($input.val() !== "") {
-                        toDos.push($input.val());
-                        $input.val("");
-                    }
+                    var description = $input.val(),
+                        tags = $tagInput.val().split(",");
+                                 
+                    toDoObjects.push({"description":description, "tags":tags});
+
+                    // update toDos
+                    toDos = toDoObjects.map(function (toDo) {
+                        return toDo.description;
+                    });
+
+                    $input.val("");
+                    $tagInput.val("");
                 });
 
-                $content = $("<div>").append($input).append($button);
-               /* Alternatively append() allows multiple arguments so the above
-                can be done with $content = $("<div>").append($input, $button); */
-            };
+                $content = $("<div>").append($inputLabel)
+                                     .append($input)
+                                     .append($tagLabel)
+                                     .append($tagInput)
+                                     .append($button);
+            }
 
             $("main .content").append($content);
 
